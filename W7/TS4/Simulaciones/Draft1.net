@@ -1,0 +1,20 @@
+* Z:\home\joaquin\Escritorio\TC2\Tc2 GitHub\TC2\W7\TS4\Draft1.asc
+R1 N003 N002 {R}
+R2 N007 N004 {R}
+C1 N006 N007 {C}
+C2 N004 N003 {C}
+C3 Vo N001 {C}
+R3 Vo 0 {R}
+R4 N005 N006 {R}
+R5 N008 N005 {R}
+R6 N008 0 {R}
+XU1 N006 N004 N005 opamp Aol=100K GBW=10Meg
+XU2 N006 N008 N007 opamp Aol=100K GBW=10Meg
+XU3 N001 N004 N001 opamp Aol=100K GBW=10Meg
+V1 N002 0 AC 1 0
+.lib opamp.sub
+.ac dec 1000 1k 500k
+.param R=1k
+.param C=5n
+.backanno
+.end
