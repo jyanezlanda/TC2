@@ -13,8 +13,7 @@ import scipy.signal as sig
 
 
 # Librería de TC2, esta la vas a usar mucho
-from pytc2.sistemas_lineales import pzmap, GroupDelay, bodePlot
-
+from pytc2.sistemas_lineales import analyze_sys, pretty_print_lti, pretty_print_SOS
 plt.figure(1)
 plt.close(1)
 
@@ -62,19 +61,25 @@ print ("El orden del filtro elegido es n =", n)
 z, p, k = sig.buttap(n)
 
 Nlp, Dlp = sig.zpk2tf(z, p, k)
-tflp = TransferFunction( 3.16*Nlp, Dlp )
+Nlp = 3.16*Nlp
 
-bodePlot(tflp, fig_id=1, filter_description = 'Q={:3.3f}'.format(Q) )
-pzmap(tflp, fig_id=2, filter_description = 'Q={:3.3f}'.format(Q)) #S plane pole/zero plot
-GroupDelay(tflp, fig_id=3, filter_description = 'Q={:3.3f}'.format(Q))
+tflp = TransferFunction(Nlp, Dlp )
 
-Nbp, Dbp = sig.lp2bp(3.16*Nlp , Dlp, w0, BW/fo)
+
+pretty_print_lti(Nlp, Dlp)
+
+analyze_sys(tflp, sys_name='lowpass')
+# bodePlot(tflp, fig_id=1, filter_description = 'Q={:3.3f}'.format(Q) )
+# pzmap(tflp, fig_id=2, filter_description = 'Q={:3.3f}'.format(Q)) #S plane pole/zero plot
+# GroupDelay(tflp, fig_id=3, filter_description = 'Q={:3.3f}'.format(Q))
+
+Nbp, Dbp = sig.lp2bp(Nlp , Dlp, w0, BW/fo)
 
 zbp, pbp, lbp = sig.tf2zpk(Dbp, Nbp)
 
 tfbp = TransferFunction(Nbp, Dbp)
-
-bodePlot(tfbp, fig_id=1, filter_description = 'Q={:3.3f}'.format(Q) )
-pzmap(tfbp, fig_id=2, filter_description = 'Q={:3.3f}'.format(Q)) #S plane pole/zero plot
-GroupDelay(tfbp, fig_id=3, filter_description = 'Q={:3.3f}'.format(Q))
+analyze_sys(tfbp, sys_name='bandpass')
+# bodePlot(tfbp, fig_id=1, filter_description = 'Q={:3.3f}'.format(Q) )
+# pzmap(tfbp, fig_id=2, filter_description = 'Q={:3.3f}'.format(Q)) #S plane pole/zero plot
+# GroupDelay(tfbp, fig_id=3, filter_description = 'Q={:3.3f}'.format(Q))
                                                                            
