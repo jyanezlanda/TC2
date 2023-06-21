@@ -1,0 +1,57 @@
+* Z:\home\joaquin\Escritorio\TC2\Tc2 GitHub\TC2\W10\Ts5\simulaciones\Circuito_activado.asc
+C1 N001 N004 {C}
+C2 N006 N002 {C}
+C3 Vo N002 {C}
+R1 N001 0 {R1}
+R2 N005 N001 {R2}
+R3 N002 N003 {R}
+R4 N006 N004 {R}
+R5 0 Vo {R5}
+V1 N004 0 AC 1 0
+XU1 N003 N001 N002 opamp Aol=100K GBW=10Meg
+XU2 N003 N006 N005 opamp Aol=100K GBW=10Meg
+R6 N003 N005 {R}
+R7 N008 N007 {Rg/b}
+R8 N008 0 {Rg/(1-b)}
+R9 N010 N008 {Rg}
+R10 Vgic N009 {Rg}
+R11 0 N011 {Rg/(1-d)}
+R12 N011 Vgic {Rg}
+R13 N011 N007 {Rg/d}
+C4 N009 N010 {Cg}
+C5 N008 N007 {Cg*a}
+C6 0 N008 {Cg*(1-a)}
+XU3 N009 N008 Vgic opamp Aol=100K GBW=10Meg
+XU4 N009 N011 N010 opamp Aol=100K GBW=10Meg
+C7 Vog Vgic {Cg}
+R14 Vog 0 {Rg}
+V2 N007 0 AC 1 0
+.param Ww=2*pi*300
+.param Wz=10k
+.param C=C_n/(Ww*Wz)
+.param R1= R1_n *Wz
+.param R2= R2_n*Wz
+.param R=R_n*Wz
+.param R5=R5_n*Wz
+.param C_n=1
+.param R1_n=1
+.param R2_n=8/9
+.param R_n=9/8
+.param R5_n=1
+.lib opamp.sub
+.ac dec 1000 {Ww/10/2/pi} {Ww*10/2/pi}
+* Normas de impedancia y frecuencia
+* Valores de los componentes normalizados
+* Valores finales de los componentes
+* Parámetros de simulación
+.param Cg=Cg_n/(Ww*Wz)
+.param a=(d+1)/2
+.param b=d/2
+.param Rg=Rg_n*Wz
+.param d=1/9
+.param Cg_n=1
+.param Rg_n=1
+* Valores de los componentes normalizados
+* Valores finales de los componentes
+.backanno
+.end
