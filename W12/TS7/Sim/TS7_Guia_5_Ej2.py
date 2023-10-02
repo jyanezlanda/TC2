@@ -54,7 +54,7 @@ plt.grid(visible = True)
 plt.plot(ww, np.angle(hh))
 
 ###Alto Nivel
-#analyze_sys(TFZ, sys_name = "Fs = 100 kHz", digital = True)
+analyze_sys(TFZ, sys_name = "Fs = 100 kHz", digital = True)
 
 """
 fs = 10
