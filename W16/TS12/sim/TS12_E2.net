@@ -1,0 +1,12 @@
+* C:\users\joaquin\Escritorio\TC2\W16\TS12\sim\TS12_E2.asc
+C1 0 N001 {C1}
+C2 Vo N001 {C}
+C3 Vo 0 {C3}
+L1 N001 Vo {L2}
+R1 Vo 0 1
+I1 0 N001 AC 1 0
+.param C1=27/17/Ww C=27/289/Ww L2=289/243/Ww C3=7/17/Ww
+.param Ww = 2*pi
+.ac dec 100 0.01 100
+.backanno
+.end

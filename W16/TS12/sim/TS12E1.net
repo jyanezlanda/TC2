@@ -1,0 +1,14 @@
+* C:\users\joaquin\Escritorio\TC2\W16\TS12\sim\TS12E1.asc
+R1 N001 0 5
+R2 N002 N001 2
+R3 N003 N002 10
+R4 0 N003 1
+C1 N003 N002 {C1}
+C2 N002 N001 {C2}
+I1 0 N001 AC 1 0
+.param Ww = 2*pi
+.param C1 = 1/10/Ww C2 = 1/8/Ww
+.ac dec 1000 0.01 1000
+.net I(R4) I1
+.backanno
+.end
